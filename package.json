@@ -3,6 +3,24 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "description": "A React project with TypeScript, Vite, and Cypress for testing.",
+  "keywords": [
+    "react",
+    "typescript",
+    "vite",
+    "cypress",
+    "testing",
+    "redux",
+    "eslint",
+    "prettier"
+  ],
+  "author": "OnlineByteCoder",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amolaher92/onlinebytecoder_react.git",
+    "directory": "onlinebytecoder_react"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
