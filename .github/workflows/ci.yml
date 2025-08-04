@@ -1,4 +1,8 @@
-name: CI/CD Pipeline
+# 🚀 CI/CD Pipeline for OnlineByteCoder
+# Runs on push and pull requests to main branch.
+# Includes linting, formatting, unit tests, E2E tests, and build step.
+
+name: 🛠️ OnlineByteCoder CI/CD Pipeline
 
 on:
   push:
@@ -7,33 +11,40 @@ on:
     branches: [main]
 
 jobs:
-  build-and-test:
+  linux-build-test:
+    name: 🐧 Build & Test on Linux (Ubuntu)
     runs-on: ubuntu-latest
 
     steps:
+      # 📁 Checkout Code
       - name: ⬇️ Checkout repository
         uses: actions/checkout@v3
 
+      # 🔧 Node Environment Setup
       - name: 🔧 Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 22.18.0
           cache: 'yarn'
 
+      # 📦 Install Dependencies
       - name: 📦 Install dependencies with Yarn
         run: yarn install --frozen-lockfile
 
-      - name: 🧼 Lint the code
+      # ✅ Lint and Format Checks
+      - name: 🧼 Run ESLint for code quality
         run: yarn lint
 
-      - name: 💅 Prettier format check
+      - name: 💅 Check code formatting with Prettier
         run: yarn format:check
 
-      - name: 🧪 Unit tests with Vitest
+      # 🧪 Testing (Unit + Component + E2E)
+      - name: 🧪 Run unit tests with Vitest
         run: yarn test:coverage
 
-      - name: 🧪 E2E tests with Cypress
+      - name: 🧪 Run Cypress E2E/component tests
         run: yarn cy:run:headless
 
-      - name: 🏗️ Build the project
+      # 🏗️ Build
+      - name: 🏗️ Build the project using Vite
         run: yarn build
